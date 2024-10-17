@@ -2,4 +2,6 @@
     <string name="app_name">Dicoding Event</string>
     <string name="title_upcoming">Upcoming</string>
     <string name="title_finished">Finished</string>
+    <string name="image_description">Image Description</string>
+    <string name="title_event">Title Event</string>
 </resources>

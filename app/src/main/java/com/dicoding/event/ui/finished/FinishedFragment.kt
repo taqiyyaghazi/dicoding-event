@@ -22,14 +22,14 @@ class FinishedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val finishedViewModel =
+            ViewModelProvider(this).get(FinishedViewModel::class.java)
 
         _binding = FragmentFinishedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        finishedViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
