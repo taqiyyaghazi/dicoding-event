@@ -1,5 +1,6 @@
 package com.dicoding.event.ui.finished
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,32 +8,66 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.event.databinding.FragmentFinishedBinding
+import com.dicoding.event.ui.DetailActivity
+import com.dicoding.event.ui.EventAdapter
+import com.dicoding.event.ui.upcoming.UpcomingViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class FinishedFragment : Fragment() {
 
     private var _binding: FragmentFinishedBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var finishedViewModel: FinishedViewModel
+    private lateinit var eventAdapter: EventAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val finishedViewModel =
-            ViewModelProvider(this).get(FinishedViewModel::class.java)
-
         _binding = FragmentFinishedBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textDashboard
-        finishedViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+
+        // Setup ViewModel
+        finishedViewModel = ViewModelProvider(this)[FinishedViewModel::class.java]
+
+        finishedViewModel.finishedEvents.observe(viewLifecycleOwner) { events ->
+            eventAdapter.submitList(events)
         }
-        return root
+
+        // Observe loading state
+        finishedViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            showLoading(isLoading)
+        }
+
+        finishedViewModel.errorMessage.observe(viewLifecycleOwner) { errorMsg ->
+            errorMsg?.let {
+                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        eventAdapter = EventAdapter(requireContext()) { event ->
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_EVENT_ID, event.id)
+
+            startActivity(intent)
+        }
+        binding.rvFinishedEvent.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.rvFinishedEvent.adapter = eventAdapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

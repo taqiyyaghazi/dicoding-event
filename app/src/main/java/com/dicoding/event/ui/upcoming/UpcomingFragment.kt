@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.event.databinding.FragmentUpcomingBindin
+import com.dicoding.event.databinding.FragmentUpcomingBinding
 import com.dicoding.event.ui.DetailActivity
 import com.dicoding.event.ui.EventAdapter
 import com.google.android.material.snackbar.Snackbar
