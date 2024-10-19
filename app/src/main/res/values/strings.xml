@@ -4,4 +4,15 @@
     <string name="title_finished">Finished</string>
     <string name="image_description">Image Description</string>
     <string name="title_event">Title Event</string>
+    <string name="event_name">Judul Event</string>
+    <string name="event_summary">Ringkasan Event</string>
+    <string name="icon_owner">Icon Owner</string>
+    <string name="event_owner">Nama Penyelenggara</string>
+    <string name="icon_time">Icon Waktu</string>
+    <string name="icon_kuota">Icon Kuota</string>
+    <string name="event_time">2024-06-07 16:00:00</string>
+    <string name="event_kuota">20 Kuota Tersisa</string>
+    <string name="event_description">Deskripsi Event</string>
+    <string name="available_quota">%1$s Kuota Tersedia</string>
+    <string name="open_event">Buka Event</string>
 </resources>

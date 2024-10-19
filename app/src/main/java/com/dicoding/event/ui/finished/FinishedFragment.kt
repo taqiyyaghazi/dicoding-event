@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.event.databinding.FragmentFinishedBinding
-import com.dicoding.event.ui.DetailActivity
+import com.dicoding.event.ui.detail.DetailActivity
 import com.dicoding.event.ui.EventAdapter
-import com.dicoding.event.ui.upcoming.UpcomingViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class FinishedFragment : Fragment() {

@@ -48,8 +48,8 @@ class EventAdapter(
     }
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemImage: ImageView = itemView.findViewById(R.id.item_Image)
-        val itemText: TextView = itemView.findViewById(R.id.item_Text)
+        val itemImage: ImageView = itemView.findViewById(R.id.item_image)
+        val itemText: TextView = itemView.findViewById(R.id.item_text)
     }
 
     class EventsDiffCallback(
